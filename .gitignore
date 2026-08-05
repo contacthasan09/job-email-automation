@@ -1,0 +1,22 @@
+﻿# Sensitive files
+.env
+credentials.json
+node_modules/
+attachments/*.pdf
+*.log
+*.csv
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Private attachments
+backend/attachments/*.pdf
+
+# Generated files
+structure.txt
