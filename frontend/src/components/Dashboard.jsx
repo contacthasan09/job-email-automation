@@ -51,20 +51,21 @@ const Dashboard = () => {
 
     const autoRefreshInterval = useRef(null);
 
-    useEffect(() => {
-        loadAllData();
-        loadSheets();
-        
-        autoRefreshInterval.current = setInterval(() => {
-            refreshAllData();
-        }, 30000);
-        
-        return () => {
-            if (autoRefreshInterval.current) {
-                clearInterval(autoRefreshInterval.current);
-            }
-        };
-    }, []);
+useEffect(() => {
+    loadAllData();
+    loadSheets();
+
+    autoRefreshInterval.current = setInterval(() => {
+        refreshAllData();
+    }, 30000);
+
+    return () => {
+        if (autoRefreshInterval.current) {
+            clearInterval(autoRefreshInterval.current);
+        }
+    };
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
     const loadAllData = async () => {
         try {
