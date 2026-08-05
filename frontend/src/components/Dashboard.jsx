@@ -9,8 +9,8 @@ import {
 } from 'react-icons/fa';
 import './Dashboard.css';
 
-const API_URL = 'http://localhost:5000/api';
-const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1KHly4-TWVidpqwn2kzIcIE-PqqHtxBehqt-z1CIRfzY/edit';
+// const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL;const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1KHly4-TWVidpqwn2kzIcIE-PqqHtxBehqt-z1CIRfzY/edit';
 
 const Dashboard = () => {
     const [stats, setStats] = useState({ 
