@@ -45,7 +45,7 @@ function log(message, type = "INFO") {
 // ============================================
 // GOOGLE SHEETS CLIENT
 // ============================================
-async function getGoogleSheetsClient() {
+/* async function getGoogleSheetsClient() {
     try {
         if (!fs.existsSync("credentials.json")) {
             throw new Error("credentials.json not found!");
@@ -65,7 +65,37 @@ async function getGoogleSheetsClient() {
         log(`Failed to setup Google Sheets: ${error.message}`, "ERROR");
         throw error;
     }
+}  */
+
+
+    async function getGoogleSheetsClient() {
+    try {
+        if (!process.env.GOOGLE_CREDENTIALS) {
+            throw new Error("GOOGLE_CREDENTIALS environment variable missing!");
+        }
+
+        const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
+        const auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: [
+                "https://www.googleapis.com/auth/spreadsheets"
+            ],
+        });
+
+        return google.sheets({
+            version: "v4",
+            auth
+        });
+
+    } catch (error) {
+        log(`Failed to setup Google Sheets: ${error.message}`, "ERROR");
+        throw error;
+    }
 }
+
+
+
 
 // ============================================
 // READ FROM GOOGLE SHEETS
